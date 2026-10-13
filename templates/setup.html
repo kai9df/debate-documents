@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block content %}<h1>Connect the debate inbox</h1>
+<p>Expected account: <strong>{{ mailbox }}</strong>.</p>
+<div class="notice">Before continuing, set your Google authorization app to <strong>In production</strong> and upload the Web application client JSON with <code>connect.sh</code>.</div>
+<p>Connecting enables forwarding of new incoming emails, including their text and attachments, to your configured Discord forum. Existing inbox history is not imported on the initial connection. Everyone with access to that forum can read the forwarded material.</p>
+<form action="/connect" method="post"><input type="hidden" name="csrf" value="{{ csrf }}"><button>Authorize Gmail and start forwarding</button></form>
+<p><a href="/admin">View delivery status</a></p>{% endblock %}

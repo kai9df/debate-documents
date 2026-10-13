@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}<h1>Delivery status</h1><p>{{ mailbox }}</p>
+<dl><dt>Connection</dt><dd>{{ 'Connected' if state.get('connected') else 'Not connected yet' }}</dd>
+<dt>Forwarding</dt><dd>{{ 'Paused' if state.get('paused') else 'Enabled once connected' }}</dd>
+<dt>Last successful check (UTC)</dt><dd>{{ state.get('last_success', 'No completed check yet') }}</dd>
+<dt>Last error</dt><dd>{{ state.get('last_error') or 'None recorded' }}</dd></dl>
+<form method="post" action="/admin/action"><input type="hidden" name="csrf" value="{{ csrf }}"><button name="action" value="sync">Check now</button><button name="action" value="{{ 'resume' if state.get('paused') else 'pause' }}">{{ 'Resume' if state.get('paused') else 'Pause' }}</button></form>
+<p><a href="/setup">Connect or reconnect Gmail</a></p><p>Pausing does not delete existing Discord posts. Resuming catches up on received messages where Gmail history remains available.</p>{% endblock %}

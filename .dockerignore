@@ -1,0 +1,7 @@
+*
+!app.py
+!relay.py
+!requirements.txt
+!Dockerfile
+!templates/
+!templates/**
